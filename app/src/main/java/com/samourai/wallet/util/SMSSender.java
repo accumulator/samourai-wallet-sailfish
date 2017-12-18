@@ -1,6 +1,6 @@
 package com.samourai.wallet.util;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -48,7 +48,7 @@ public class SMSSender {
             public void onReceive(Context arg0, Intent arg1) {
                 switch (getResultCode())
                 {
-                    case Activity.RESULT_OK:
+                    case AppCompatActivity.RESULT_OK:
 //	                    Toast.makeText(((Activity)context).getBaseContext(), "SMS sent", Toast.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
@@ -73,10 +73,10 @@ public class SMSSender {
             public void onReceive(Context arg0, Intent arg1) {
                 switch (getResultCode())
                 {
-                    case Activity.RESULT_OK:
+                    case AppCompatActivity.RESULT_OK:
 //	                    Toast.makeText(((Activity)context).getBaseContext(), "SMS delivered", Toast.LENGTH_SHORT).show();
                         break;
-                    case Activity.RESULT_CANCELED:
+                    case AppCompatActivity.RESULT_CANCELED:
 //	                    Toast.makeText(((Activity)context).getBaseContext(), "SMS not delivered", Toast.LENGTH_SHORT).show();
                         break;
                 }

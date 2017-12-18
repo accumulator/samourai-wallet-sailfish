@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 
 public class NotificationsFactory {
 
@@ -31,16 +32,25 @@ public class NotificationsFactory {
         mNotificationManager.cancel(id);
     }
 
+
     public void setNotification(String title, String marquee, String text, int drawable, Class cls, int id) {
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        final Notification notifyDetails = new Notification(drawable, marquee, System.currentTimeMillis());
 
         Intent notifyIntent = new Intent(context, cls);
         PendingIntent intent = PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        notifyDetails.setLatestEventInfo(context, title, text, intent);
-        notifyDetails.flags |= Notification.FLAG_AUTO_CANCEL;
-        notifyDetails.number = 0;
-//        notifyDetails.sound = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.alert);
-        mNotificationManager.notify(id, notifyDetails);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"");
+
+        Notification notification = builder.setContentIntent(intent)
+                .setSmallIcon(drawable)
+                .setTicker(text)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true)
+                .setContentTitle(title)
+                .setContentInfo(marquee)
+                .setContentText(text)
+                .build();
+
+        mNotificationManager.notify(id, notification);
     }
 }

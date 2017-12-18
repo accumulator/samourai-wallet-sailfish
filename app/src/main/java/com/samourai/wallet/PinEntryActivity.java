@@ -1,7 +1,7 @@
 package com.samourai.wallet;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,7 +46,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PinEntryActivity extends Activity {
+public class PinEntryActivity extends AppCompatActivity {
 
     private Button ta = null;
     private Button tb = null;

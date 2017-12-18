@@ -1,7 +1,7 @@
 package com.samourai.wallet.bip47;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class BIP47Recommended extends Activity {
+public class BIP47Recommended extends AppCompatActivity {
 
     private ListView listView = null;
     private ArrayAdapter adapter = null;
@@ -50,7 +50,7 @@ public class BIP47Recommended extends Activity {
 
         setTitle(R.string.bip47_recommended);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         listView = (ListView) findViewById(R.id.list);
@@ -97,7 +97,7 @@ public class BIP47Recommended extends Activity {
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("label", itemValue.label);
                     resultIntent.putExtra("pcode", itemValue.pcode);
-                    setResult(Activity.RESULT_OK, resultIntent);
+                    setResult(AppCompatActivity.RESULT_OK, resultIntent);
                     finish();
                 }
 

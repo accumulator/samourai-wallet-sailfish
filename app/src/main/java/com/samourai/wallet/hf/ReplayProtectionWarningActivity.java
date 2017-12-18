@@ -1,6 +1,6 @@
 package com.samourai.wallet.hf;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +12,7 @@ import com.samourai.wallet.R;
 import com.samourai.wallet.util.AppUtil;
 import com.samourai.wallet.util.PrefsUtil;
 
-public class ReplayProtectionWarningActivity extends Activity {
+public class ReplayProtectionWarningActivity extends AppCompatActivity {
 
     private Button btEnable = null;
     private Button btDismiss = null;

@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
 import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
@@ -121,7 +121,7 @@ import java.util.List;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
-public class BalanceActivity extends Activity {
+public class BalanceActivity extends AppCompatActivity {
 
     private final static int SCAN_COLD_STORAGE = 2011;
     private final static int SCAN_QR = 2012;
@@ -696,7 +696,7 @@ public class BalanceActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == Activity.RESULT_OK && requestCode == SCAN_COLD_STORAGE)	{
+        if(resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_COLD_STORAGE)	{
 
             if(data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null)	{
 
@@ -706,10 +706,10 @@ public class BalanceActivity extends Activity {
 
             }
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_COLD_STORAGE)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_COLD_STORAGE)	{
             ;
         }
-        else if(resultCode == Activity.RESULT_OK && requestCode == SCAN_QR)	{
+        else if(resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_QR)	{
 
             if(data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null)	{
 
@@ -732,7 +732,7 @@ public class BalanceActivity extends Activity {
 
             }
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_QR)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_QR)	{
             ;
         }
         else {

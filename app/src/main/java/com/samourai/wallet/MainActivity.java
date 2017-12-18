@@ -1,6 +1,6 @@
 package com.samourai.wallet;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.TestNet3Params;
 //import android.util.Log;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private static boolean genesis = false;
 

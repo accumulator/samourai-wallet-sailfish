@@ -1,6 +1,6 @@
 package com.samourai.wallet.hf;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ReplayProtectionActivity extends Activity {
+public class ReplayProtectionActivity extends AppCompatActivity {
 
     private LinearLayout layoutAlert = null;
     private LinearLayout layoutMain = null;

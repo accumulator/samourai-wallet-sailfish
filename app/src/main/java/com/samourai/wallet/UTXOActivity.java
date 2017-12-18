@@ -1,7 +1,7 @@
 package com.samourai.wallet;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,7 +51,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UTXOActivity extends Activity {
+public class UTXOActivity extends AppCompatActivity {
 
     private class DisplayData   {
         private String addr = null;

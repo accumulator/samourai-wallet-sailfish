@@ -1,6 +1,6 @@
 package com.dm.zbar.android.scanner;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
@@ -15,7 +15,7 @@ import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Symbol;
 import net.sourceforge.zbar.SymbolSet;
 
-public class ZBarScannerActivity extends Activity implements Camera.PreviewCallback, ZBarConstants {
+public class ZBarScannerActivity extends AppCompatActivity implements Camera.PreviewCallback, ZBarConstants {
 
 	private static final String TAG = "ZBarScannerActivity";
 	private CameraPreview mPreview;
@@ -153,7 +153,7 @@ public class ZBarScannerActivity extends Activity implements Camera.PreviewCallb
 	public void cancelRequest() {
 		Intent dataIntent = new Intent();
 		dataIntent.putExtra(ERROR_INFO, "Camera unavailable");
-		setResult(Activity.RESULT_CANCELED, dataIntent);
+		setResult(AppCompatActivity.RESULT_CANCELED, dataIntent);
 		finish();
 	}
 
@@ -178,7 +178,7 @@ public class ZBarScannerActivity extends Activity implements Camera.PreviewCallb
 					Intent dataIntent = new Intent();
 					dataIntent.putExtra(SCAN_RESULT, symData);
 					dataIntent.putExtra(SCAN_RESULT_TYPE, sym.getType());
-					setResult(Activity.RESULT_OK, dataIntent);
+					setResult(AppCompatActivity.RESULT_OK, dataIntent);
 					finish();
 					break;
 				}

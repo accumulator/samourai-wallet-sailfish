@@ -1,8 +1,8 @@
 package com.samourai.wallet.bip47;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -108,7 +108,7 @@ import com.samourai.wallet.util.WebUtil;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-public class BIP47Activity extends Activity {
+public class BIP47Activity extends AppCompatActivity {
 
     private static final int EDIT_PCODE = 2000;
     private static final int RECOMMENDED_PCODE = 2001;
@@ -135,7 +135,7 @@ public class BIP47Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bip47_list);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         ibBIP47Menu = (FloatingActionsMenu)findViewById(R.id.bip47_menu);
@@ -440,16 +440,16 @@ public class BIP47Activity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (resultCode == Activity.RESULT_OK && requestCode == SCAN_PCODE) {
+        if (resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_PCODE) {
             if (data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null) {
                 String strResult = data.getStringExtra(ZBarConstants.SCAN_RESULT);
                 processScan(strResult);
             }
         }
-        else if (resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_PCODE) {
+        else if (resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_PCODE) {
             ;
         }
-        else if (resultCode == Activity.RESULT_OK && requestCode == EDIT_PCODE) {
+        else if (resultCode == AppCompatActivity.RESULT_OK && requestCode == EDIT_PCODE) {
 
             if(data.hasExtra("pcode"))    {
 
@@ -464,10 +464,10 @@ public class BIP47Activity extends Activity {
             }
 
         }
-        else if (resultCode == Activity.RESULT_CANCELED && requestCode == EDIT_PCODE) {
+        else if (resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == EDIT_PCODE) {
             ;
         }
-        else if (resultCode == Activity.RESULT_OK && requestCode == RECOMMENDED_PCODE) {
+        else if (resultCode == AppCompatActivity.RESULT_OK && requestCode == RECOMMENDED_PCODE) {
 
             if(data.hasExtra("pcode") && data.hasExtra("label"))    {
 
@@ -526,7 +526,7 @@ public class BIP47Activity extends Activity {
             }
 
         }
-        else if (resultCode == Activity.RESULT_CANCELED && requestCode == RECOMMENDED_PCODE) {
+        else if (resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == RECOMMENDED_PCODE) {
             ;
         }
         else {

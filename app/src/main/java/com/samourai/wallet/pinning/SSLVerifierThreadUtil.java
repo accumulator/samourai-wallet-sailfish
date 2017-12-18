@@ -1,7 +1,7 @@
 package com.samourai.wallet.pinning;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
@@ -77,7 +77,7 @@ public class SSLVerifierThreadUtil {
 
     private void showAlertDialog(final String message, final boolean forceExit){
 
-        if (!((Activity) context).isFinishing()) {
+        if (!((AppCompatActivity) context).isFinishing()) {
 
             if(alertDialog != null)alertDialog.dismiss();
 
@@ -100,7 +100,7 @@ public class SSLVerifierThreadUtil {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface d, int id) {
                             d.dismiss();
-                            ((Activity) context).finish();
+                            ((AppCompatActivity) context).finish();
                         }
                     });
 

@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -110,7 +110,7 @@ import org.bouncycastle.util.encoders.Hex;
 
 import static java.lang.System.currentTimeMillis;
 
-public class SendActivity extends Activity {
+public class SendActivity extends AppCompatActivity {
 
     private final static int SCAN_QR = 2012;
     private final static int RICOCHET = 2013;
@@ -166,7 +166,7 @@ public class SendActivity extends Activity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        SendActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        SendActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         if(SamouraiWallet.getInstance().getShowTotalBalance())    {
             if(SamouraiWallet.getInstance().getCurrentSelectedAccount() == 2)    {
@@ -1297,7 +1297,7 @@ public class SendActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        SendActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        SendActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
         super.onDestroy();
     }
@@ -1349,7 +1349,7 @@ public class SendActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == Activity.RESULT_OK && requestCode == SCAN_QR)	{
+        if(resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_QR)	{
 
             if(data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null)	{
 
@@ -1359,13 +1359,13 @@ public class SendActivity extends Activity {
 
             }
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_QR)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_QR)	{
             ;
         }
-        else if(resultCode == Activity.RESULT_OK && requestCode == RICOCHET)	{
+        else if(resultCode == AppCompatActivity.RESULT_OK && requestCode == RICOCHET)	{
             ;
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == RICOCHET)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == RICOCHET)	{
             ;
         }
         else {

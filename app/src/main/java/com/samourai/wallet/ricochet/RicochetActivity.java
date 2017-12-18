@@ -1,7 +1,7 @@
 package com.samourai.wallet.ricochet;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +38,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class RicochetActivity extends Activity {
+public class RicochetActivity extends AppCompatActivity {
 
     private String strPCode = null;
     private boolean samouraiFeeViaBIP47 = false;

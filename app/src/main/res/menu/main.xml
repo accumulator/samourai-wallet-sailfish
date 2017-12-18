@@ -1,68 +1,69 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_refresh"
         android:icon="@drawable/ic_action_refresh"
         android:visible="true"
         android:title=""
-        android:showAsAction="always"
+        app:showAsAction="always"
         />
     <item android:id="@+id/action_share_receive"
         android:icon="@drawable/ic_share_white_24dp"
         android:visible="true"
         android:title=""
-        android:showAsAction="always"
+        app:showAsAction="always"
         />
     <item android:id="@+id/action_tor"
         android:icon="@drawable/tor_off"
         android:visible="true"
         android:title=""
-        android:showAsAction="always"
+        app:showAsAction="always"
         />
     <item android:id="@+id/action_scan_qr"
         android:icon="@drawable/ic_crop_free_white_24dp"
         android:visible="true"
         android:title=""
-        android:showAsAction="always"
+        app:showAsAction="always"
         />
     <item android:id="@+id/action_sweep"
         android:title="@string/action_sweep"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_backup"
         android:title="@string/options_export"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_utxo"
         android:title="@string/options_utxo"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_fees"
         android:title="@string/options_fees"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_ricochet"
         android:title="@string/action_ricochet"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_empty_ricochet"
         android:title="@string/action_empty_ricochet"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_sign"
         android:title="@string/options_sign"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
 
 </menu>

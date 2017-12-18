@@ -13,8 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -72,7 +72,7 @@ import com.samourai.wallet.util.PrivKeyReader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OpenDimeActivity extends Activity {
+public class OpenDimeActivity extends AppCompatActivity {
 
     static {
         FileSystemFactory.registerFileSystem(new JavaFsFileSystemCreator());

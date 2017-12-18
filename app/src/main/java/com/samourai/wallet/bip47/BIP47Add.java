@@ -1,7 +1,7 @@
 package com.samourai.wallet.bip47;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +36,7 @@ import org.bouncycastle.util.encoders.DecoderException;
 
 import java.io.IOException;
 
-public class BIP47Add extends Activity {
+public class BIP47Add extends AppCompatActivity {
 
     private EditText edLabel = null;
     private EditText edPCode = null;
@@ -48,7 +48,7 @@ public class BIP47Add extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bip47_add);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         edLabel = (EditText)findViewById(R.id.label);
@@ -167,7 +167,7 @@ public class BIP47Add extends Activity {
 
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("pcode", pcode);
-                setResult(Activity.RESULT_OK, resultIntent);
+                setResult(AppCompatActivity.RESULT_OK, resultIntent);
                 finish();
 
             }

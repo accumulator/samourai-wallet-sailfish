@@ -1,8 +1,12 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.res.Configuration;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -24,12 +28,17 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -94,6 +103,7 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 public class SettingsActivity2 extends PreferenceActivity	{
 
+    private AppCompatDelegate mDelegate;
     private ProgressDialog progress = null;
     private boolean steathActivating = false;
 
@@ -101,7 +111,8 @@ public class SettingsActivity2 extends PreferenceActivity	{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        getDelegate().installViewFactory();
+        getDelegate().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
@@ -912,9 +923,15 @@ public class SettingsActivity2 extends PreferenceActivity	{
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getDelegate().onPostCreate(savedInstanceState);
     }
 
     @Override
@@ -925,6 +942,24 @@ public class SettingsActivity2 extends PreferenceActivity	{
 
         AppUtil.getInstance(SettingsActivity2.this).checkTimeOut();
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        getDelegate().onPostResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getDelegate().onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getDelegate().onDestroy();
     }
 
     @Override
@@ -945,7 +980,7 @@ public class SettingsActivity2 extends PreferenceActivity	{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == Activity.RESULT_OK && requestCode == SCAN_HEX_TX)	{
+        if(resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_HEX_TX)	{
 
             if(data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null)	{
 
@@ -955,7 +990,7 @@ public class SettingsActivity2 extends PreferenceActivity	{
 
             }
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_HEX_TX)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_HEX_TX)	{
             ;
         }
         else {
@@ -1678,5 +1713,64 @@ public class SettingsActivity2 extends PreferenceActivity	{
         }
 
     }
+
+
+    //region AppCompat Delegate
+    private AppCompatDelegate getDelegate() {
+        if (mDelegate == null) {
+            mDelegate = AppCompatDelegate.create(this, null);
+        }
+        return mDelegate;
+    }
+
+    public ActionBar getSupportActionBar() {
+        return getDelegate().getSupportActionBar();
+    }
+
+    public void setSupportActionBar(@Nullable Toolbar toolbar) {
+        getDelegate().setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public MenuInflater getMenuInflater() {
+        return getDelegate().getMenuInflater();
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        getDelegate().setContentView(layoutResID);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        getDelegate().setContentView(view);
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        getDelegate().setContentView(view, params);
+    }
+
+    @Override
+    public void addContentView(View view, ViewGroup.LayoutParams params) {
+        getDelegate().addContentView(view, params);
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        getDelegate().setTitle(title);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getDelegate().onConfigurationChanged(newConfig);
+    }
+
+    public void invalidateOptionsMenu() {
+        getDelegate().invalidateOptionsMenu();
+    }
+    //endregion
 
 }

@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -64,7 +64,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-public class ReceiveActivity extends Activity {
+public class ReceiveActivity extends AppCompatActivity {
 
     private static Display display = null;
     private static int imgWidth = 0;
@@ -135,7 +135,7 @@ public class ReceiveActivity extends Activity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        ReceiveActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        ReceiveActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         display = (ReceiveActivity.this).getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -422,7 +422,7 @@ public class ReceiveActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        ReceiveActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        ReceiveActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         super.onDestroy();
     }
 

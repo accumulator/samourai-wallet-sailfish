@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -62,7 +62,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
-public class MainActivity2 extends Activity {
+public class MainActivity2 extends AppCompatActivity {
 
     private ProgressDialog progress = null;
 
@@ -106,7 +106,7 @@ public class MainActivity2 extends Activity {
 
 //        doAccountSelection();
 
-        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         ActionBar.OnNavigationListener navigationListener = new ActionBar.OnNavigationListener() {
             @Override
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
@@ -143,8 +143,8 @@ public class MainActivity2 extends Activity {
             }
         };
 
-        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
-        getActionBar().setSelectedNavigationItem(1);
+        getSupportActionBar().setListNavigationCallbacks(adapter, navigationListener);
+        getSupportActionBar().setSelectedNavigationItem(1);
 
         // Apply PRNG fixes for Android 4.1
         if(!AppUtil.getInstance(MainActivity2.this).isPRNG_FIXED())    {

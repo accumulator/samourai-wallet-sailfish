@@ -88,8 +88,18 @@ public class PayloadUtil	{
     }
 
     public File getBackupFile()  {
-        String directory = Environment.DIRECTORY_DOCUMENTS;
-        File dir = Environment.getExternalStoragePublicDirectory(directory + strOptionalBackupDir);
+
+        File dir;
+
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
+        {
+            dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + strOptionalBackupDir);
+        }
+        else
+        {
+            dir = new File(Environment.getExternalStorageDirectory() + "/Documents" + strOptionalBackupDir);
+        }
+
         File file = new File(dir, strOptionalFilename);
 
         return file;
@@ -713,8 +723,17 @@ public class PayloadUtil	{
 
     private synchronized void serialize(String data) throws IOException    {
 
-        String directory = Environment.DIRECTORY_DOCUMENTS;
-        File dir = Environment.getExternalStoragePublicDirectory(directory + "/samourai");
+        File dir;
+
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
+        {
+            dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS + "/samourai");
+        }
+        else
+        {
+            dir = new File(Environment.getExternalStorageDirectory() + "/Documents/samourai");
+        }
+
         if(!dir.exists())   {
             dir.mkdirs();
             dir.setWritable(true, true);

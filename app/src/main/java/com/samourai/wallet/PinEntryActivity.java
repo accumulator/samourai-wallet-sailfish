@@ -263,7 +263,7 @@ public class PinEntryActivity extends AppCompatActivity {
 
                     if(userInput.toString().equals(strConfirm)) {
 
-                        progress = new ProgressDialog(PinEntryActivity.this);
+                        progress = new ProgressDialog(PinEntryActivity.this, R.style.progressDialog);
                         progress.setCancelable(false);
                         progress.setTitle(R.string.app_name);
                         progress.setMessage(strSeed == null ? getString(R.string.creating_wallet) :  getString(R.string.restoring_wallet));
@@ -324,7 +324,7 @@ public class PinEntryActivity extends AppCompatActivity {
 
     private void validateThread(final String pin, final String uri)	{
 
-        final ProgressDialog progress = new ProgressDialog(PinEntryActivity.this);
+        final ProgressDialog progress = new ProgressDialog(PinEntryActivity.this, R.style.progressDialog);
 
         if (progress != null && progress.isShowing()) {
             progress.dismiss();
@@ -670,7 +670,7 @@ public class PinEntryActivity extends AppCompatActivity {
                                     AppUtil.getInstance(PinEntryActivity.this).restartApp();
                                 }
 
-                                progress = new ProgressDialog(PinEntryActivity.this);
+                                progress = new ProgressDialog(PinEntryActivity.this, R.style.progressDialog);
                                 progress.setCancelable(false);
                                 progress.setTitle(R.string.app_name);
                                 progress.setMessage(getString(R.string.please_wait));

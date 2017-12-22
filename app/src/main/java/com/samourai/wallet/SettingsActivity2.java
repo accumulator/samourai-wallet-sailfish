@@ -548,7 +548,7 @@ public class SettingsActivity2 extends PreferenceActivity	{
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                                        final ProgressDialog progress = new ProgressDialog(SettingsActivity2.this);
+                                        final ProgressDialog progress = new ProgressDialog(SettingsActivity2.this, R.style.progressDialog);
                                         progress.setTitle(R.string.app_name);
                                         progress.setMessage(SettingsActivity2.this.getResources().getString(R.string.securely_wiping_wait));
                                         progress.setCancelable(false);
@@ -1682,7 +1682,7 @@ public class SettingsActivity2 extends PreferenceActivity	{
                             progress = null;
                         }
 
-                        progress = new ProgressDialog(SettingsActivity2.this);
+                        progress = new ProgressDialog(SettingsActivity2.this, R.style.progressDialog);
                         progress.setCancelable(false);
                         progress.setTitle(R.string.app_name);
                         progress.setMessage(getString(R.string.please_wait));

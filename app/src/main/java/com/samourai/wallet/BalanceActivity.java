@@ -902,7 +902,7 @@ public class BalanceActivity extends AppCompatActivity {
 
                                 String password = password38.getText().toString();
 
-                                ProgressDialog progress = new ProgressDialog(BalanceActivity.this);
+                                ProgressDialog progress = new ProgressDialog(BalanceActivity.this, R.style.progressDialog);
                                 progress.setCancelable(false);
                                 progress.setTitle(R.string.app_name);
                                 progress.setMessage(getString(R.string.decrypting_bip38));
@@ -1465,7 +1465,7 @@ public class BalanceActivity extends AppCompatActivity {
                 strProgressTitle = BalanceActivity.this.getText(R.string.app_name).toString();
                 strProgressMessage = BalanceActivity.this.getText(R.string.refresh_tx_pre).toString();
 
-                progress = new ProgressDialog(BalanceActivity.this);
+                progress = new ProgressDialog(BalanceActivity.this, R.style.progressDialog);
                 progress.setCancelable(true);
                 progress.setTitle(strProgressTitle);
                 progress.setMessage(strProgressMessage);

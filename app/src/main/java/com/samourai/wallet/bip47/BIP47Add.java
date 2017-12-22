@@ -187,7 +187,7 @@ public class BIP47Add extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            progress = new ProgressDialog(BIP47Add.this);
+            progress = new ProgressDialog(BIP47Add.this,R.style.progressDialog);
             progress.setCancelable(false);
             progress.setTitle(R.string.app_name);
             progress.setMessage(getString(R.string.please_wait));

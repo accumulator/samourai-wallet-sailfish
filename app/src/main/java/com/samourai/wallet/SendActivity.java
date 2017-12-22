@@ -945,7 +945,7 @@ public class SendActivity extends AppCompatActivity {
                     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(final DialogInterface dialog, int whichButton) {
 
-                            final ProgressDialog progress = new ProgressDialog(SendActivity.this);
+                            final ProgressDialog progress = new ProgressDialog(SendActivity.this, R.style.progressDialog);
                             progress.setCancelable(false);
                             progress.setTitle(R.string.app_name);
                             progress.setMessage(getString(R.string.please_wait_sending));

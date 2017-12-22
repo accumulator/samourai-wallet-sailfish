@@ -1401,7 +1401,7 @@ public class BIP47Activity extends AppCompatActivity {
 
     private void doSync(final String pcode)    {
 
-        progress = new ProgressDialog(BIP47Activity.this);
+        progress = new ProgressDialog(BIP47Activity.this, R.style.progressDialog);
         progress.setCancelable(false);
         progress.setTitle(R.string.app_name);
         progress.setMessage(getString(R.string.please_wait));

@@ -97,7 +97,7 @@ public class SweepUtil  {
                         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(final DialogInterface dialog, int whichButton) {
 
-                                final ProgressDialog progress = new ProgressDialog(context);
+                                final ProgressDialog progress = new ProgressDialog(context,R.style.progressDialog);
                                 progress.setCancelable(false);
                                 progress.setTitle(R.string.app_name);
                                 progress.setMessage(context.getString(R.string.please_wait_sending));

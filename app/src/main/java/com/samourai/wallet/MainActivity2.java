@@ -453,7 +453,7 @@ public class MainActivity2 extends AppCompatActivity {
                                                                             progress = null;
                                                                         }
 
-                                                                        progress = new ProgressDialog(MainActivity2.this);
+                                                                        progress = new ProgressDialog(MainActivity2.this, R.style.progressDialog);
                                                                         progress.setCancelable(false);
                                                                         progress.setTitle(R.string.app_name);
                                                                         progress.setMessage(getString(R.string.please_wait));
@@ -632,7 +632,7 @@ public class MainActivity2 extends AppCompatActivity {
             progress = null;
         }
 
-        progress = new ProgressDialog(MainActivity2.this);
+        progress = new ProgressDialog(MainActivity2.this, R.style.progressDialog);
         progress.setCancelable(false);
         progress.setTitle(R.string.app_name);
         progress.setMessage(getString(R.string.please_wait));
@@ -751,7 +751,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         if((strUri != null || strPCode != null) && AccessFactory.getInstance(MainActivity2.this).isLoggedIn())    {
 
-            progress = new ProgressDialog(MainActivity2.this);
+            progress = new ProgressDialog(MainActivity2.this, R.style.progressDialog);
             progress.setCancelable(false);
             progress.setTitle(R.string.app_name);
             progress.setMessage(getText(R.string.please_wait));

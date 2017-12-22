@@ -12,12 +12,34 @@
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColor">@color/text_secondary</item>
 
+        <item name="alertDialogTheme">@style/dialog</item>
+        <item name="actionBarPopupTheme">@style/actionBarPopup</item>
 
     </style>
 
     <style name="menu_labels_style">
         <item name="android:background">@drawable/fab_label_background</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/window</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/primary</item>
+    </style>
+
+    <style name="progressDialog" parent="Base.Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/primary</item>
+    </style>
+
+    <style name="actionBarPopup" parent="Widget.AppCompat.ListPopupWindow">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:background">@color/primary</item>
     </style>
 
 </resources>

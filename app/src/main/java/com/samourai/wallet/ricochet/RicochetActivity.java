@@ -326,7 +326,7 @@ public class RicochetActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
-            progress = new ProgressDialog(RicochetActivity.this);
+            progress = new ProgressDialog(RicochetActivity.this, R.style.progressDialog);
             progress.setCancelable(false);
             progress.setTitle(R.string.app_name);
             progress.setMessage(getString(R.string.please_wait_ricochet));

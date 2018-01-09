@@ -9,7 +9,7 @@
         android:id="@id/TodayLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"

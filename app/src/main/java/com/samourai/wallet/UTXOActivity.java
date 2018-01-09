@@ -22,7 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;

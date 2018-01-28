@@ -61,6 +61,7 @@ import com.samourai.wallet.api.APIFactory;
 import com.samourai.wallet.api.Tx;
 import com.samourai.wallet.bip47.BIP47Meta;
 import com.samourai.wallet.bip47.BIP47Util;
+import com.samourai.wallet.bip47.paynym.ClaimPayNymActivity;
 import com.samourai.wallet.bip47.rpc.*;
 import com.samourai.wallet.crypto.AESUtil;
 import com.samourai.wallet.crypto.DecryptionException;
@@ -519,8 +520,16 @@ public class BalanceActivity extends AppCompatActivity {
                                         .setCancelable(false)
                                         .setPositiveButton(R.string.recovery_checkup_finish, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int whichButton) {
-                                                PrefsUtil.getInstance(BalanceActivity.this).setValue(PrefsUtil.CREDS_CHECK, System.currentTimeMillis() / 1000L);
+
                                                 dialog.dismiss();
+
+                                                PrefsUtil.getInstance(BalanceActivity.this).setValue(PrefsUtil.CREDS_CHECK, System.currentTimeMillis() / 1000L);
+
+                                                if(PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.PAYNYM_CLAIMED, false) == false &&
+                                                        PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.PAYNYM_REFUSED, false) == false)    {
+                                                    doClaimPayNym();
+                                                }
+
                                             }
                                         });
                                 if(!isFinishing())    {
@@ -538,6 +547,12 @@ public class BalanceActivity extends AppCompatActivity {
                 dlg.show();
             }
 
+        }
+        else    {
+            if(PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.PAYNYM_CLAIMED, false) == false &&
+                    PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.PAYNYM_REFUSED, false) == false)    {
+                doClaimPayNym();
+            }
         }
 
         if(!AppUtil.getInstance(BalanceActivity.this).isClipboardSeen())    {
@@ -792,6 +807,11 @@ public class BalanceActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    private void doClaimPayNym() {
+        Intent intent = new Intent(BalanceActivity.this, ClaimPayNymActivity.class);
+        startActivity(intent);
     }
 
     private void doSettings()	{
@@ -1329,25 +1349,14 @@ public class BalanceActivity extends AppCompatActivity {
         df.setMinimumFractionDigits(1);
         df.setMaximumFractionDigits(8);
 
-        int unit = PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.BTC_UNITS, MonetaryUtil.UNIT_BTC);
-        switch(unit) {
-            case MonetaryUtil.MICRO_BTC:
-                strAmount = df.format(((double)(value * 1000000L)) / 1e8);
-                break;
-            case MonetaryUtil.MILLI_BTC:
-                strAmount = df.format(((double)(value * 1000L)) / 1e8);
-                break;
-            default:
-                strAmount = Coin.valueOf(value).toPlainString();
-                break;
-        }
+        strAmount = Coin.valueOf(value).toPlainString();
 
         return strAmount;
     }
 
     private String getBTCDisplayUnits() {
 
-        return (String) MonetaryUtil.getInstance().getBTCUnits()[PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.BTC_UNITS, MonetaryUtil.UNIT_BTC)];
+        return MonetaryUtil.getInstance().getBTCUnits();
 
     }
 
@@ -1702,6 +1711,7 @@ public class BalanceActivity extends AppCompatActivity {
                     }
 
                 }
+
             }
 
         }
@@ -2208,7 +2218,12 @@ public class BalanceActivity extends AppCompatActivity {
                         if(obj.has("value"))    {
                             total_outputs += obj.getLong("value");
 
-                            String _addr = obj.getString("address");
+                            String _addr = null;
+                            if(obj.has("address"))    {
+                                _addr = obj.getString("address");
+                            }
+                            // if !obj.has("address"), not a change address -- probably bech32
+
                             selfAddresses.add(_addr);
                             if(_addr != null && rbf.getChangeAddrs().contains(_addr.toString()))    {
                                 total_change += obj.getLong("value");
@@ -2334,10 +2349,10 @@ public class BalanceActivity extends AppCompatActivity {
                         // parent tx didn't have change output
                         if(outputs.length() == 1 && extraChange > 0L)    {
                             try {
-                                boolean isSegwit = FormatsUtil.getInstance().isValidBech32(outputs.getJSONObject(0).getString("address")) ||  Address.fromBase58(SamouraiWallet.getInstance().getCurrentNetworkParams(), outputs.getJSONObject(0).getString("address")).isP2SHAddress();
+                                boolean isSegwitChange = (FormatsUtil.getInstance().isValidBech32(outputs.getJSONObject(0).getString("address")) ||  Address.fromBase58(SamouraiWallet.getInstance().getCurrentNetworkParams(), outputs.getJSONObject(0).getString("address")).isP2SHAddress()) || PrefsUtil.getInstance(BalanceActivity.this).getValue(PrefsUtil.USE_LIKE_TYPED_CHANGE, true) == false;
 
                                 String change_address = null;
-                                if(isSegwit)    {
+                                if(isSegwitChange)    {
                                     int changeIdx = BIP49Util.getInstance(BalanceActivity.this).getWallet().getAccount(0).getChange().getAddrIdx();
                                     change_address = BIP49Util.getInstance(BalanceActivity.this).getAddressAt(AddressFactory.CHANGE_CHAIN, changeIdx).getAddressAsString();
                                 }
@@ -2367,7 +2382,7 @@ public class BalanceActivity extends AppCompatActivity {
                             for(TransactionOutput output : txOutputs)   {
                                 Address _address = output.getAddressFromP2PKHScript(SamouraiWallet.getInstance().getCurrentNetworkParams());
                                 if(_address == null)    {
-                                    _address = output.getAddressFromP2PKHScript(SamouraiWallet.getInstance().getCurrentNetworkParams());
+                                    _address = output.getAddressFromP2SH(SamouraiWallet.getInstance().getCurrentNetworkParams());
                                 }
                                 Log.d("BalanceActivity", "checking for change:" + _address.toString());
                                 if(rbf.containsChangeAddr(_address.toString()))    {

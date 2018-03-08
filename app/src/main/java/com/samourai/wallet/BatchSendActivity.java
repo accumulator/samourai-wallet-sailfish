@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -102,7 +102,7 @@ import org.bouncycastle.util.encoders.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BatchSendActivity extends Activity {
+public class BatchSendActivity extends AppCompatActivity {
 
     private final static int SCAN_QR = 2012;
     private final static int FEE_SELECT = 2013;
@@ -148,7 +148,7 @@ public class BatchSendActivity extends Activity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        BatchSendActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        BatchSendActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         data = new ArrayList<BatchSendUtil.BatchSend>();
         listView = (ListView)findViewById(R.id.list);
@@ -466,7 +466,7 @@ public class BatchSendActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        BatchSendActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        BatchSendActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
         super.onDestroy();
     }
@@ -544,7 +544,7 @@ public class BatchSendActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == Activity.RESULT_OK && requestCode == SCAN_QR)	{
+        if(resultCode == AppCompatActivity.RESULT_OK && requestCode == SCAN_QR)	{
 
             if(data != null && data.getStringExtra(ZBarConstants.SCAN_RESULT) != null)	{
 
@@ -554,17 +554,17 @@ public class BatchSendActivity extends Activity {
 
             }
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == SCAN_QR)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == SCAN_QR)	{
             ;
         }
-        else if(resultCode == Activity.RESULT_OK && requestCode == FEE_SELECT)	{
+        else if(resultCode == AppCompatActivity.RESULT_OK && requestCode == FEE_SELECT)	{
 
             Log.d("BatchSpendActivity", "selected fee:" + FeeUtil.getInstance().getSuggestedFee().getDefaultPerKB().longValue() / 1000L);
 
             doSpend();
 
         }
-        else if(resultCode == Activity.RESULT_CANCELED && requestCode == FEE_SELECT)	{
+        else if(resultCode == AppCompatActivity.RESULT_CANCELED && requestCode == FEE_SELECT)	{
             ;
         }
         else {

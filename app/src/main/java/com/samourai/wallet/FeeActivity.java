@@ -1,8 +1,8 @@
 package com.samourai.wallet;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -111,7 +111,7 @@ import org.bouncycastle.util.encoders.Hex;
 
 import static java.lang.System.currentTimeMillis;
 
-public class FeeActivity extends Activity {
+public class FeeActivity extends AppCompatActivity {
 
     private Button btLowFee = null;
     private Button btAutoFee = null;
@@ -135,7 +135,7 @@ public class FeeActivity extends Activity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        FeeActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        FeeActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         btLowFee = (Button)findViewById(R.id.low_fee);
         btAutoFee = (Button)findViewById(R.id.auto_fee);
@@ -302,7 +302,7 @@ public class FeeActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        FeeActivity.this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        FeeActivity.this.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
         super.onDestroy();
     }

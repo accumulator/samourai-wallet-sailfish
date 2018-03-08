@@ -28,7 +28,7 @@
     <item android:id="@+id/action_batch"
         android:title="@string/options_batch"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_sweep"
         android:title="@string/action_sweep"
@@ -68,7 +68,7 @@
     <item android:id="@+id/action_support"
         android:title="@string/action_support"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         />
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

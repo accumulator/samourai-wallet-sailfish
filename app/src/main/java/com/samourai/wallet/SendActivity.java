@@ -223,17 +223,6 @@ public class SendActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        tvCurrentFeePrompt = (TextView)findViewById(R.id.current_fee_prompt);
-        tvCurrentFeePrompt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                doCustomFee();
-                return false;
-            }
-        });
-        */
-
         DecimalFormat format = (DecimalFormat)DecimalFormat.getInstance(Locale.US);
         DecimalFormatSymbols symbols = format.getDecimalFormatSymbols();
         defaultSeparator = Character.toString(symbols.getDecimalSeparator());
@@ -992,10 +981,12 @@ public class SendActivity extends AppCompatActivity {
                                             receivers.put(change_address, BigInteger.valueOf(_change));
                                         }
                                         catch(IOException ioe) {
-                                            ;
+                                            Toast.makeText(SendActivity.this, R.string.error_change_output, Toast.LENGTH_SHORT).show();
+                                            return;
                                         }
                                         catch(MnemonicException.MnemonicLengthException mle) {
-                                            ;
+                                            Toast.makeText(SendActivity.this, R.string.error_change_output, Toast.LENGTH_SHORT).show();
+                                            return;
                                         }
                                     }
 
@@ -1121,14 +1112,20 @@ public class SendActivity extends AppCompatActivity {
                                                 }
 
                                                 if(_change > 0L && SPEND_TYPE == SPEND_SIMPLE)    {
-                                                    try {
-                                                        HD_WalletFactory.getInstance(SendActivity.this).get().getAccount(0).getChange().incAddrIdx();
+
+                                                    if(isSegwitChange)    {
+                                                        BIP49Util.getInstance(SendActivity.this).getWallet().getAccount(0).getChange().incAddrIdx();
                                                     }
-                                                    catch(IOException ioe) {
-                                                        ;
-                                                    }
-                                                    catch(MnemonicException.MnemonicLengthException mle) {
-                                                        ;
+                                                    else    {
+                                                        try {
+                                                            HD_WalletFactory.getInstance(SendActivity.this).get().getAccount(0).getChange().incAddrIdx();
+                                                        }
+                                                        catch(IOException ioe) {
+                                                            ;
+                                                        }
+                                                        catch(MnemonicException.MnemonicLengthException mle) {
+                                                            ;
+                                                        }
                                                     }
                                                 }
 
@@ -1361,6 +1358,9 @@ public class SendActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_fees) {
             doFees();
+        }
+        else if (id == R.id.action_batch) {
+            doBatchSpend();
         }
         else {
             ;
@@ -1697,7 +1697,7 @@ public class SendActivity extends AppCompatActivity {
 
                         }
 
-                        if(customValue < 3 && !strCustomFee.equalsIgnoreCase("noll"))    {
+                        if(customValue < 1 && !strCustomFee.equalsIgnoreCase("noll"))    {
                             Toast.makeText(SendActivity.this, R.string.custom_fee_too_low, Toast.LENGTH_SHORT).show();
                         }
                         else if(customValue > sanityValue)   {
@@ -1764,6 +1764,11 @@ public class SendActivity extends AppCompatActivity {
 
     private void doUTXO()	{
         Intent intent = new Intent(SendActivity.this, UTXOActivity.class);
+        startActivity(intent);
+    }
+
+    private void doBatchSpend()	{
+        Intent intent = new Intent(SendActivity.this, BatchSendActivity.class);
         startActivity(intent);
     }
 

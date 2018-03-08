@@ -25,6 +25,11 @@
         android:title=""
         app:showAsAction="always"
         />
+    <item android:id="@+id/action_batch"
+        android:title="@string/options_batch"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        />
     <item android:id="@+id/action_sweep"
         android:title="@string/action_sweep"
         android:orderInCategory="100"
@@ -59,6 +64,11 @@
         android:title="@string/options_sign"
         android:orderInCategory="100"
         app:showAsAction="never"
+        />
+    <item android:id="@+id/action_support"
+        android:title="@string/action_support"
+        android:orderInCategory="100"
+        android:showAsAction="never"
         />
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
